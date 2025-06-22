@@ -11,6 +11,7 @@ MASALAN: getHighestIndex([5, 21, 12, 21 ,8]); return qiladi 1
 
 function getHighestIndex(...number) {
 
-    return Math.max(...number)
+    const maxIndex = Math.max(...number)
+    return number.indexOf(maxIndex)
 };
 console.log(getHighestIndex(4, 32, 21, 12))
