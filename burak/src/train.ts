@@ -25,8 +25,28 @@ MASALAN: getPositive([1, -4, 2]) return qiladi "12"
 @MITASK
 */
 
-function getPositive(numbers: number[]): string {
-    return numbers.filter((num: number) => num > 0).join('');
+// function getPositive(numbers: number[]): string {
+//     return numbers.filter((num: number) => num > 0).join('');
+// }
+
+// console.log(getPositive([1, -4, 2]))
+
+/*
+H2-TASK: 
+
+Shunday function tuzing, unga string argument pass bolsin. Function ushbu agrumentdagi digitlarni yangi stringda return qilsin
+MASALAN: getDigits("m14i1t") return qiladi "141"
+
+*/
+
+
+function getDigits(str: string): string {
+    return str
+        .split('')
+        .filter(digit => digit >= '0' && digit <= '9')
+        .join('');
 }
 
-console.log(getPositive([1, -4, 2]))
+
+console.log(getDigits("m14i1t"))
+
