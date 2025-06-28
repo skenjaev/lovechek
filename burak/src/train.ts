@@ -79,13 +79,46 @@ MASALAN: getDigits("m14i1t") return qiladi "141"
 */
 
 
-function getDigits(str: string): string {
-    return str
-        .split('')
-        .filter(digit => digit >= '0' && digit <= '9')
-        .join('');
+// function getDigits(str: string): string {
+//     return str
+//         .split('')
+//         .filter(digit => digit >= '0' && digit <= '9')
+//         .join('');
+// }
+
+
+// console.log(getDigits("m14i1t"))
+
+/*
+TASK I:
+
+Shunday function tuzing, u parametrdagi array ichida eng ko'p
+takrorlangan raqamni topib qaytarsin.
+
+MASALAN: majorityElement([1, 2, 3, 4, 5, 4, 3, 4]); return 4
+*/
+
+
+function majorityElement(a: number[]) {
+    let max = 0;
+    let most;
+
+    for (let i = 0; i < a.length; i++) {
+        let count = 0;
+
+        for (let j = 0; j < a.length; j++) {
+            if (a[i] === a[j]) {
+                count++;
+            }
+        }
+
+        if (count > max) {
+            max = count;
+            most = a[i];
+        }
+    }
+
+    return most;
 }
 
-
-console.log(getDigits("m14i1t"))
-
+console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4]))
