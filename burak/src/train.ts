@@ -1,5 +1,7 @@
 
-/* Project Standarts
+/*
+
+Project Standarts
 -Logging standarts
 -Naming standarts
     function, method, variable => camelaCase
@@ -8,6 +10,8 @@
     css => snake
 
 -Error handling
+
+*/
 
 
 
