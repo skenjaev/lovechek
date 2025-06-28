@@ -8,11 +8,15 @@ Project Standarts
     class =>Pascal
     folder => Kebab
     css => snake
-
 -Error handling
 
 */
 
+/*
+Traditional API
+REST API
+GraphQL API
+*/
 
 
 
