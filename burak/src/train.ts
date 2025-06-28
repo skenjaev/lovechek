@@ -1,3 +1,34 @@
+
+/* Project Standarts
+-Logging standarts
+-Naming standarts
+    function, method, variable => camelaCase
+    class =>Pascal
+    folder => Kebab
+    css => snake
+
+-Error handling
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 TASK G:
 
