@@ -99,26 +99,53 @@ MASALAN: majorityElement([1, 2, 3, 4, 5, 4, 3, 4]); return 4
 */
 
 
-function majorityElement(a: number[]) {
-    let max = 0;
-    let most;
+// function majorityElement(a: number[]) {
+//     let max = 0;
+//     let most;
 
-    for (let i = 0; i < a.length; i++) {
-        let count = 0;
+//     for (let i = 0; i < a.length; i++) {
+//         let count = 0;
 
-        for (let j = 0; j < a.length; j++) {
-            if (a[i] === a[j]) {
-                count++;
-            }
-        }
+//         for (let j = 0; j < a.length; j++) {
+//             if (a[i] === a[j]) {
+//                 count++;
+//             }
+//         }
 
-        if (count > max) {
-            max = count;
-            most = a[i];
+//         if (count > max) {
+//             max = count;
+//             most = a[i];
+//         }
+//     }
+
+//     return most;
+// }
+
+// console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4]))
+
+
+
+/*
+
+TASK J:
+
+Shunday function tuzing, u string qabul qilsin.
+Va string ichidagi eng uzun so'zni qaytarsin.
+
+MASALAN: findLongestWord("I came from Uzbekistan!"); return "Uzbekistan!"
+
+*/
+
+
+function findLongestWord(a:string){
+    const word = a.split(" ");
+    let longestWord ="";
+    for( let i= 0; i<word.length;i++){
+        if(word[i].length > longestWord.length){
+            longestWord = word[i]
         }
     }
-
-    return most;
+    return longestWord;
 }
 
-console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4]))
+console.log(findLongestWord("I came from Uzbekistan"))
