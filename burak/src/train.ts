@@ -17,6 +17,34 @@ Traditional API
 REST API
 GraphQL API
 */
+// TASK K:
+
+// Berilayotgan parametr tarkibida nechta unli harf bor
+// ekanligini aniqlovchi function tuzing
+
+// MASALAN: countVowels("string"); return 1
+
+
+//yechim:
+
+function countVowels(a: string) {
+    let count = 0;
+    for (let i = 0; i < a.length; i++) {
+      if (
+        a[i] === 'a' ||
+        a[i] === 'e' ||
+        a[i] === 'i' ||
+        a[i] === 'o' ||
+        a[i] === 'u'
+      ) {
+        count++;
+      }
+    }
+    return count;
+  };
+
+  console.log(countVowels('string'))
+  
 
 
 
