@@ -12,20 +12,58 @@ class MemberService {
 
 
     //SPA
+
     public async signup(input: MemberInput): Promise<Member> {
-
-        const salt = await bcrypt.genSalt();
-        input.memberPassword = await bcrypt.hash(input.memberPassword,salt);
-
-        try {
-            const result = await this.memberModel.create(input)
-            result.memberPassword = ''
-            return result.toJSON();
-        } catch (err) {
-            console.log("ERROR, model:signup", err)
-            throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE)
+        console.log("KELGAN INPUT:", input);
+      
+        // 1. Nickname va phone borligini tekshirish
+        const existing = await this.memberModel.findOne({
+          $or: [
+            { memberNick: input.memberNick },
+            { memberPhone: input.memberPhone }
+          ]
+        }).exec();
+      
+        if (existing) {
+          console.log("BU USER AVVAL QO‘SHILGAN");
+          throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
         }
-    }
+      
+        // 2. Hash password
+        const salt = await bcrypt.genSalt();
+        input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
+      
+        try {
+          const result = await this.memberModel.create(input);
+          console.log("YARATILDI:", result);
+          result.memberPassword = '';
+          return result.toJSON();
+        } catch (err) {
+          console.error("XATO create:", err);
+          throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
+        }
+      }
+      
+
+
+
+    // public async signup(input: MemberInput): Promise<Member> {
+
+    //     const salt = await bcrypt.genSalt();
+    //     input.memberPassword = await bcrypt.hash(input.memberPassword,salt);
+
+    //     try {
+    //         const result = await this.memberModel.create(input)
+    //         result.memberPassword = ''
+    //         return result.toJSON();
+    //     } catch (err) {
+    //         console.error("ERROR, model:signup", err)
+    //         throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE)
+    //     }
+    // }
+
+
+
 
     public async login(input:LoginInput): Promise<Member>{
         const member = await this.memberModel
