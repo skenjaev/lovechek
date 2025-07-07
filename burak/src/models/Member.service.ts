@@ -13,40 +13,6 @@ class MemberService {
 
     //SPA
 
-    // public async signup(input: MemberInput): Promise<Member> {
-    //     console.log("KELGAN INPUT:", input);
-      
-    //     // 1. Nickname va phone borligini tekshirish
-    //     const existing = await this.memberModel.findOne({
-    //       $or: [
-    //         { memberNick: input.memberNick },
-    //         { memberPhone: input.memberPhone }
-    //       ]
-    //     }).exec();
-      
-    //     if (existing) {
-    //       console.log("BU USER AVVAL QO‘SHILGAN");
-    //       throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
-    //     }
-      
-    //     // 2. Hash password
-    //     const salt = await bcrypt.genSalt();
-    //     input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
-      
-    //     try {
-    //       const result = await this.memberModel.create(input);
-    //       console.log("YARATILDI:", result);
-    //       result.memberPassword = '';
-    //       return result.toJSON();
-    //     } catch (err) {
-    //       console.error("XATO create:", err);
-    //       throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
-    //     }
-    //   }
-      
-
-
-
     public async signup(input: MemberInput): Promise<Member> {
 
         const salt = await bcrypt.genSalt();
@@ -81,7 +47,7 @@ class MemberService {
         )
 
        // const isMatch = input.memberPassword === member.memberPassword;
-        if(!isMatch)throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD)
+        if(!isMatch){throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD)}
         
         return await this.memberModel.findById(member._id).lean().exec();
     }
@@ -123,7 +89,7 @@ class MemberService {
         )
 
        // const isMatch = input.memberPassword === member.memberPassword;
-        if(!isMatch)throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD)
+        if(!isMatch){throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD)}
         
         return await this.memberModel.findById(member._id).exec();
     }
