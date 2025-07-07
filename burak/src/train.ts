@@ -27,40 +27,23 @@ GraphQL API
 
 //yechim:
 
-function countVowels(a: string) {
-    let count = 0;
-    for (let i = 0; i < a.length; i++) {
-      if (
-        a[i] === 'a' ||
-        a[i] === 'e' ||
-        a[i] === 'i' ||
-        a[i] === 'o' ||
-        a[i] === 'u'
-      ) {
-        count++;
-      }
-    }
-    return count;
-  };
+// function countVowels(a: string) {
+//     let count = 0;
+//     for (let i = 0; i < a.length; i++) {
+//       if (
+//         a[i] === 'a' ||
+//         a[i] === 'e' ||
+//         a[i] === 'i' ||
+//         a[i] === 'o' ||
+//         a[i] === 'u'
+//       ) {
+//         count++;
+//       }
+//     }
+//     return count;
+//   };
 
-  console.log(countVowels('string'))
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//   console.log(countVowels('string'))
 
 
 
@@ -165,15 +148,37 @@ MASALAN: findLongestWord("I came from Uzbekistan!"); return "Uzbekistan!"
 */
 
 
-function findLongestWord(a:string){
-    const word = a.split(" ");
-    let longestWord ="";
-    for( let i= 0; i<word.length;i++){
-        if(word[i].length > longestWord.length){
-            longestWord = word[i]
-        }
-    }
-    return longestWord;
+// function findLongestWord(a:string){
+//     const word = a.split(" ");
+//     let longestWord ="";
+//     for( let i= 0; i<word.length;i++){
+//         if(word[i].length > longestWord.length){
+//             longestWord = word[i]
+//         }
+//     }
+//     return longestWord;
+// }
+
+// console.log(findLongestWord("I came from Uzbekistan"))
+
+
+
+/*
+L-TASK: 
+
+Shunday function yozing, u string qabul qilsin va string ichidagi hamma sozlarni chappasiga yozib va sozlar ketma-ketligini buzmasdan stringni qaytarsin.
+MASALAN: reverseSentence("we like coding!") return "ew ekil gnidoc";
+
+*/
+
+//yechim:
+
+function reverseSentence(a:string){
+  const getWords = a.split(' ')
+  const reversedWords = getWords.map((word) =>
+    word.split("").reverse().join("")
+  );
+  return reversedWords.join(" ");
 }
 
-console.log(findLongestWord("I came from Uzbekistan"))
+console.log(reverseSentence("we like coding"))
