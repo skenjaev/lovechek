@@ -173,12 +173,31 @@ MASALAN: reverseSentence("we like coding!") return "ew ekil gnidoc";
 
 //yechim:
 
-function reverseSentence(a:string){
-  const getWords = a.split(' ')
-  const reversedWords = getWords.map((word) =>
-    word.split("").reverse().join("")
-  );
-  return reversedWords.join(" ");
+// function reverseSentence(a:string){
+//   const getWords = a.split(' ')
+//   const reversedWords = getWords.map((word) =>
+//     word.split("").reverse().join("")
+//   );
+//   return reversedWords.join(" ");
+// }
+
+// console.log(reverseSentence("we like coding"))
+
+// M-TASK: 
+
+// Shunday function yozing, u raqamlardan tashkil topgan array qabul qilsin va array ichidagi har bir raqam uchun raqamni ozi va hamda osha raqamni kvadratidan tashkil topgan object hosil qilib, hosil bolgan objectlarni array ichida qaytarsin.
+// MASALAN: getSquareNumbers([1, 2, 3]) return [{number: 1, square: 1}, {number: 2, square: 4}, {number: 3, square: 9}];
+
+// @MITASK
+
+//yechim
+
+function getSquareNumbers(numbers: number[]): { number: number, square: number }[] {
+  return numbers.map((num) => ({
+    number: num,
+    square: num * num
+  }));
 }
 
-console.log(reverseSentence("we like coding"))
+// Misol:
+console.log(getSquareNumbers([1, 2, 3]));
