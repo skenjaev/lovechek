@@ -29,4 +29,4 @@ routerAdmin.post("/product/create",
     );
 routerAdmin.post("/product/:id",restaurantController.verifyRestaurant, productController.updateNewProduct);
 
-export default routerAdmin
+export default routerAdmin;
