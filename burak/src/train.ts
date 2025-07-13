@@ -1,3 +1,26 @@
+/*
+TASK N:
+
+Parametr sifatida yagona string qabul qiladigan function tuzing.
+Va bu function string'ni palindrom so'z yoki palindrom so'z emasligini aniqlab (boolean)
+'true' yokida 'false' qaytarsin.
+
+MASALAN: palindromCheck("dad") return true; palindromCheck("son") return false; */
+
+//yechim:
+
+function palindromCheck(str: string) {
+  const a = str.split('').reverse().join('');
+  if (str === a) {
+    return true;
+  } else {
+    return false
+  }
+}
+
+console.log(palindromCheck('das'))
+
+
 
 /*
 
@@ -67,7 +90,7 @@ MASALAN: getHighestIndex([5, 21, 12, 21 ,8]); return qiladi 1
 // console.log(getHighestIndex(4, 32, 21, 12))
 
 /*
-H-TASK: 
+H-TASK:
 
 shunday function tuzing, u integerlardan iborat arrayni argument sifatida qabul qilib, faqat positive qiymatlarni olib string holatda return qilsin
 MASALAN: getPositive([1, -4, 2]) return qiladi "12"
@@ -82,7 +105,7 @@ MASALAN: getPositive([1, -4, 2]) return qiladi "12"
 // console.log(getPositive([1, -4, 2]))
 
 /*
-H2-TASK: 
+H2-TASK:
 
 Shunday function tuzing, unga string argument pass bolsin. Function ushbu agrumentdagi digitlarni yangi stringda return qilsin
 MASALAN: getDigits("m14i1t") return qiladi "141"
@@ -164,7 +187,7 @@ MASALAN: findLongestWord("I came from Uzbekistan!"); return "Uzbekistan!"
 
 
 /*
-L-TASK: 
+L-TASK:
 
 Shunday function yozing, u string qabul qilsin va string ichidagi hamma sozlarni chappasiga yozib va sozlar ketma-ketligini buzmasdan stringni qaytarsin.
 MASALAN: reverseSentence("we like coding!") return "ew ekil gnidoc";
@@ -192,12 +215,12 @@ MASALAN: reverseSentence("we like coding!") return "ew ekil gnidoc";
 
 //yechim
 
-function getSquareNumbers(numbers: number[]): { number: number, square: number }[] {
-  return numbers.map((num) => ({
-    number: num,
-    square: num * num
-  }));
-}
+// function getSquareNumbers(numbers: number[]): { number: number, square: number }[] {
+//   return numbers.map((num) => ({
+//     number: num,
+//     square: num * num
+//   }));
+// }
 
-// Misol:
-console.log(getSquareNumbers([1, 2, 3]));
+// // Misol:
+// console.log(getSquareNumbers([1, 2, 3]));
