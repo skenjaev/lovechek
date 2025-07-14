@@ -10,13 +10,13 @@ const productSchema = new Schema(
   {
     productStatus: {
       type: String,
-      enum: Object.values(ProductStatus),
+      enum: ProductStatus,
       default: ProductStatus.PAUSE,
     },
 
     productCollection: {
       type: String,
-      enum: Object.values(ProductCollection),
+      enum: ProductCollection,
       required: true,
     },
 
@@ -37,7 +37,7 @@ const productSchema = new Schema(
 
     productSize: {
       type: String,
-      enum: Object.values(ProductSize),
+      enum: ProductSize,
       default: ProductSize.NORMAL,
     },
 

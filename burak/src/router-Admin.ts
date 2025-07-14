@@ -13,20 +13,22 @@ routerAdmin
 
 routerAdmin
     .get('/signup', restaurantController.getSignup)
-    .post('/signup',makeUploader("members").single("memberImage"), restaurantController.processSignup);
+    .post('/signup', makeUploader("members").single("memberImage"), restaurantController.processSignup);
 routerAdmin.get("/logout", restaurantController.logout);
 routerAdmin.get("/check-me", restaurantController.checkAuthSession);
 
 /*  product */
 
-routerAdmin.get("/product/all",restaurantController.verifyRestaurant, productController.getAllProducts);
+routerAdmin.get("/product/all", restaurantController.verifyRestaurant, productController.getAllProducts);
 routerAdmin.post("/product/create",
     restaurantController.verifyRestaurant,
     makeUploader("products").array("productImages", 5),
     // uploadProductImage.single("productImage"),
     productController.createNewProduct
-    
-    );
-routerAdmin.post("/product/:id",restaurantController.verifyRestaurant, productController.updateChosenProduct);
+
+);
+routerAdmin.post("/product/:id", restaurantController.verifyRestaurant, productController.updateChosenProduct);
+
+routerAdmin.get('/users/all', restaurantController.verifyRestaurant, restaurantController.getUsers)
 
 export default routerAdmin;
