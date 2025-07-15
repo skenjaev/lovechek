@@ -29,6 +29,12 @@ routerAdmin.post("/product/create",
 );
 routerAdmin.post("/product/:id", restaurantController.verifyRestaurant, productController.updateChosenProduct);
 
-routerAdmin.get('/users/all', restaurantController.verifyRestaurant, restaurantController.getUsers)
+routerAdmin.get('/user/all', restaurantController.verifyRestaurant, restaurantController.getUsers)
+
+routerAdmin.post(
+    "/user/edit",
+    restaurantController.verifyRestaurant,
+    restaurantController.updateChosenUser
+)
 
 export default routerAdmin;
