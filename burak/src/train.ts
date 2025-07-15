@@ -1,3 +1,25 @@
+/*O-TASK:
+
+Shunday function yozing, u har xil valuelardan iborat array qabul qilsin va array ichidagi sonlar yigindisini hisoblab chiqqan javobni qaytarsin.
+MASALAN: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]) return 45
+
+ */
+
+function calculateSumOfNumbers(n: any) {
+  let sum = 0;
+
+  if (Array.isArray(n)) {
+    for (let i = 0; i < n.length; i++) {
+      if (typeof n[i] === 'number') {
+        sum += n[i];
+      }
+    }
+  }
+
+  return sum;
+}
+
+console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35]));
 /*
 TASK N:
 
@@ -9,16 +31,16 @@ MASALAN: palindromCheck("dad") return true; palindromCheck("son") return false; 
 
 //yechim:
 
-function palindromCheck(str: string) {
-  const a = str.split('').reverse().join('');
-  if (str === a) {
-    return true;
-  } else {
-    return false
-  }
-}
+// function palindromCheck(str: string) {
+//   const a = str.split('').reverse().join('');
+//   if (str === a) {
+//     return true;
+//   } else {
+//     return false
+//   }
+// }
 
-console.log(palindromCheck('das'))
+// console.log(palindromCheck('das'))
 
 
 
