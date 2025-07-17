@@ -1,33 +1,53 @@
+/*P-TASK:
+
+Shunday function yozing, u object qabul qilsin va arrayni object arrayga otkazib arrayni  qaytarsin.
+MASALAN: objectToArray( {a: 10, b: 20}) return [['a', 10], ['b', 20]]
+
+ */
+
+//yechim: 
+
+function objectToArray(obj: any) {
+  let getArr = obj
+  return Object.entries(getArr)
+}
+
+console.log(objectToArray({ a: 10, b: 20 }))
+
+
+
+
+
 /*O-TASK:
 
 Shunday function yozing, u har xil valuelardan iborat array qabul qilsin va array ichidagi sonlar yigindisini hisoblab chiqqan javobni qaytarsin.
 MASALAN: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]) return 45
 
- */
+//  */
 
-function calculateSumOfNumbers(n: any) {
-  let sum = 0;
+// function calculateSumOfNumbers(n: any) {
+//   let sum = 0;
 
-  if (Array.isArray(n)) {
-    for (let i = 0; i < n.length; i++) {
-      if (typeof n[i] === 'number') {
-        sum += n[i];
-      }
-    }
-  }
+//   if (Array.isArray(n)) {
+//     for (let i = 0; i < n.length; i++) {
+//       if (typeof n[i] === 'number') {
+//         sum += n[i];
+//       }
+//     }
+//   }
 
-  return sum;
-}
+//   return sum;
+// }
 
-console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35]));
-/*
-TASK N:
+// console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35]));
+// /*
+// TASK N:
 
-Parametr sifatida yagona string qabul qiladigan function tuzing.
-Va bu function string'ni palindrom so'z yoki palindrom so'z emasligini aniqlab (boolean)
-'true' yokida 'false' qaytarsin.
+// Parametr sifatida yagona string qabul qiladigan function tuzing.
+// Va bu function string'ni palindrom so'z yoki palindrom so'z emasligini aniqlab (boolean)
+// 'true' yokida 'false' qaytarsin.
 
-MASALAN: palindromCheck("dad") return true; palindromCheck("son") return false; */
+//   MASALAN: palindromCheck("dad") return true; palindromCheck("son") return false; * /
 
 //yechim:
 
