@@ -1,3 +1,20 @@
+// Q-TASK:
+
+// Shunday function yozing, u 2 ta parametrgga ega bolib birinchisi object, ikkinchisi string. Agar string parametr objectni propertysi bolsa true bolmasa false qaytarsin.
+// MASALAN: hasProperty({name: "BMW", model: "M3"}, "model") return true; hasProperty({name: "BMW", model: "M3"}, "year") return false
+
+// @MITASK
+
+
+function hasProperty(myObj: any, str: string): boolean {
+  return str in myObj;
+}
+
+console.log(hasProperty({name: "BMW", model: "M3"}, "model"))
+
+
+
+
 /*P-TASK:
 
 Shunday function yozing, u object qabul qilsin va arrayni object arrayga otkazib arrayni  qaytarsin.
@@ -7,12 +24,12 @@ MASALAN: objectToArray( {a: 10, b: 20}) return [['a', 10], ['b', 20]]
 
 //yechim: 
 
-function objectToArray(obj: any) {
-  let getArr = obj
-  return Object.entries(getArr)
-}
+// function objectToArray(obj: any) {
+//   let getArr = obj
+//   return Object.entries(getArr)
+// }
 
-console.log(objectToArray({ a: 10, b: 20 }))
+// console.log(objectToArray({ a: 10, b: 20 }))
 
 
 
