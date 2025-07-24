@@ -1,4 +1,20 @@
 
+// S-TASK:
+
+// Shunday function yozing, u numberlardan tashkil topgan array qabul qilsin va osha numberlar orasidagi tushib qolgan sonni topib uni return qilsin
+// MASALAN: missingNumber([3, 0, 1]) return 2
+
+// @MITASK
+
+function missingNumber(numbers: number[]): number {
+  for (let i = 0; i <= numbers.length; i++) {
+    if (!numbers.includes(i)) return i;
+  }
+  return 1
+}
+console.log(missingNumber([3, 0, 1, ]))
+
+
 // R-TASK:
 
 // Shunday function yozing, u string parametrga ega bolsin. String "1+2" holatda pass qilinganda string ichidagi sonlar yigindisini number holatda qaytarsin.
@@ -6,14 +22,14 @@
 
 // @MITASK
 
-function calculate(stringParam:any) {
-  const nums = stringParam.split('+');         
-  const firstStr = Number(nums[0]);           
-  const secondStr = Number(nums[1]);           
-  return firstStr + secondStr;                         
-}
+// function calculate(stringParam:any) {
+//   const nums = stringParam.split('+');         
+//   const firstStr = Number(nums[0]);           
+//   const secondStr = Number(nums[1]);           
+//   return firstStr + secondStr;                         
+// }
 
-console.log(calculate("1+3")); 
+// console.log(calculate("1+3")); 
 
 
 
