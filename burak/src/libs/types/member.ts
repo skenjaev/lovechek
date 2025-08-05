@@ -49,6 +49,12 @@ export interface LoginInput {
     memberPassword: string;
 }
 
+export interface ExtentedRequest extends Request {
+    member: Member;
+    file: Express.Multer.File;
+    files: Express.Multer.File[];
+}
+
 export interface AdminRequest extends Request {
     member: Member;
     session: Session & { member: Member };
