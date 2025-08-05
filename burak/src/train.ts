@@ -1,3 +1,21 @@
+function countChars(str: string): { [key: string]: number } {
+  const result: { [key: string]: number } = {}; 
+
+  for (let letter of str) {
+    if (result[letter]) {
+      result[letter]++;
+    } else {
+      result[letter] = 1;
+    }
+  }
+
+  return result; 
+}
+
+console.log(countChars("hello"))
+
+
+
 // U-TASK:
 
 // Shunday function yozing, uni number parametri bolsin va 0 dan berilgan parametrgacha bolgan oraliqdagi faqat toq sonlar nechtaligini return qilsin
@@ -5,15 +23,15 @@
 
 // @MITASK
 
-function sumOdds(number:number) {
-  let count = 0;                
-  for (let i = 1; i <= number; i += 2) {
-    count++;                    
-  }
-  return count;                 
-}
+// function sumOdds(number:number) {
+//   let count = 0;                
+//   for (let i = 1; i <= number; i += 2) {
+//     count++;                    
+//   }
+//   return count;                 
+// }
 
-console.log(sumOdds(9))
+// console.log(sumOdds(9))
 
 
 
