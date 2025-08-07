@@ -1,18 +1,34 @@
-function countChars(str: string): { [key: string]: number } {
-  const result: { [key: string]: number } = {}; 
 
-  for (let letter of str) {
-    if (result[letter]) {
-      result[letter]++;
-    } else {
-      result[letter] = 1;
-    }
+function chunkArray<T>(array: T[], size: number): T[][] {
+  const result: T[][] = [];
+
+  for (let i = 0; i < array.length; i += size) {
+    result.push(array.slice(i, i + size));
   }
 
-  return result; 
+  return result;
 }
 
-console.log(countChars("hello"))
+console.log(chunkArray([1,2,3,4,5,6,7,8,9,10],3));
+
+
+
+
+// function countChars(str: string): { [key: string]: number } {
+//   const result: { [key: string]: number } = {}; 
+
+//   for (let letter of str) {
+//     if (result[letter]) {
+//       result[letter]++;
+//     } else {
+//       result[letter] = 1;
+//     }
+//   }
+
+//   return result; 
+// }
+
+// console.log(countChars("hello"))
 
 
 
