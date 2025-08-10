@@ -2,6 +2,7 @@ import express from 'express';
 const router = express.Router();
 import memberController from './controllers/member.controller';
 import uploader from './libs/utils/uploader';
+import productController from './controllers/product.controller';
 
 //React side
 
@@ -20,5 +21,8 @@ router.post(
 )
 router.get('/member/top-users',memberController.getTopUsers)
 
+/* PRODUCTS */
+
+router.get("/product/all", productController.getProducts)
 
 export default router
