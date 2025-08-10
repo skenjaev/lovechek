@@ -1,17 +1,19 @@
 
-function chunkArray<T>(array: T[], size: number): T[][] {
-  const result: T[][] = [];
+function countOccurrences(obj: any, key: string): number {
+  let count = 0;
 
-  for (let i = 0; i < array.length; i += size) {
-    result.push(array.slice(i, i + size));
+  for (const k in obj) {
+      if (k === key) count++;
+      if (typeof obj[k] === 'object' && obj[k] !== null) {
+          count += countOccurrences(obj[k], key);
+      }
   }
 
-  return result;
+  return count;
 }
 
-console.log(chunkArray([1,2,3,4,5,6,7,8,9,10],3));
-
-
+console.log(countOccurrences( { model: 'Bugatti', steer: { model: 'HANKOOK', size: 30 } },'model')
+); 
 
 
 // function countChars(str: string): { [key: string]: number } {
