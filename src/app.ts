@@ -1,5 +1,8 @@
 import express from "express"
 import path from "path"
+import morgan from "morgan" 
+import { MORGAN_FORMAT } from "../src/libs/config"
+
 
 
 
@@ -8,6 +11,7 @@ const app = express()
 app.use(express.static(path.join(__dirname, "public")))  // Middle ware Pattern -- Design patern ga tegishli 
 app.use(express.urlencoded({extended: true})) // Middle ware pattern Traditional API requist ni qabul qiladi
 app.use(express.json()) //Middle ware pattern--json bolib kelgan requist ni object ga ugirib beradi-yani Rest API bolib requist kelgan Data larni Json ni otqizadi yani ruhsat beradi
+app.use(morgan(MORGAN_FORMAT))
 
 // Session ;
 
