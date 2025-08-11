@@ -4,7 +4,7 @@ import dotenv from "dotenv" // dotenv bizga ".env" ni ichidan uqishga imkoniyat 
 dotenv.config()
 import moment from "moment"  // ModuleJs da "import" ishlatiladi 
 import mongoose from "mongoose"
-import app from "./app" // chaqirilyapti ( express )
+import app from "./app" // chaqirilyapti ( express );
 import { format } from "morgan"
 
 
