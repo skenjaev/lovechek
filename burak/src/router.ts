@@ -29,6 +29,7 @@ router.get("/product/:id", memberController.retrieveAuth, productController.getP
 
 /* ORDERS */
 router.post('/order/create', memberController.verifyAuth, orderController.createOrder)
+router.get('/order/all', memberController.verifyAuth, orderController.getMyOrders)
 
 
 export default router
