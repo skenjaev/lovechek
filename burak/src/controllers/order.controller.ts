@@ -4,7 +4,7 @@ import { Response } from "express";
 import Errors, { HttpCode } from "../libs/Errors";
 import OrderService from "../models/Order.service"
 import { ExtentedRequest } from "../libs/types/member";
-import { OrderInquiry } from "../libs/types/order";
+import { OrderInquiry, OrderItemInput } from "../libs/types/order";
 import { OrderStatus } from "../libs/enums/order.enum";
 
 const orderService = new OrderService();
@@ -39,6 +39,20 @@ orderController.getMyOrders = async (req: ExtentedRequest, res: Response) => {
         res.status(HttpCode.CREATED).json(result)
     } catch (err) {
         console.log("Error, getMyOrders", err);
+        if (err instanceof Errors) res.status(err.code).json(err);
+        else res.status(Errors.standard.code).json(Errors.standard);
+    }
+};
+
+
+orderController.updateOrder = async (req: ExtentedRequest, res: Response) => {
+    try {
+        console.log("updateOrder");
+        const input: OrderItemInput = req.body;
+        const result = await orderController.updateOrder(req.member, input)
+        res.status(HttpCode.CREATED).json(result)
+    } catch (err) {
+        console.log("Error, updateOrder", err);
         if (err instanceof Errors) res.status(err.code).json(err);
         else res.status(Errors.standard.code).json(Errors.standard);
     }
