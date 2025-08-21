@@ -1,14 +1,23 @@
-//task --Z
-function sumEvens(a: number[]): number {
-    let sum = 0;
-    a.forEach(num => {
-      if (num % 2 === 0) sum += num;
-    });
-    return sum;
+//Task ZC
+
+function celsiusToFahrenheit(celsius: number): number {
+    return (celsius * 9) / 5 + 32;
   }
   
-  console.log(sumEvens([1, 2, 3]));   
-  console.log(sumEvens([1, 2, 3, 2])); 
+  console.log(celsiusToFahrenheit(0));   
+ 
+
+//task --Z
+// function sumEvens(a: number[]): number {
+//     let sum = 0;
+//     a.forEach(num => {
+//       if (num % 2 === 0) sum += num;
+//     });
+//     return sum;
+//   }
+  
+//   console.log(sumEvens([1, 2, 3]));   
+//   console.log(sumEvens([1, 2, 3, 2])); 
 
   
 // function countChars(str: string): { [key: string]: number } {
