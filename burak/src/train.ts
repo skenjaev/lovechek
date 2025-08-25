@@ -1,10 +1,19 @@
-//Task ZC
 
-function celsiusToFahrenheit(celsius: number): number {
-    return (celsius * 9) / 5 + 32;
-  }
+function changeNumberInArray(num: number, arr: number[], newValue: number): number[] {
+  arr[num] = newValue; 
+  return arr; 
+}
+
+console.log(changeNumberInArray(1, [1, 3, 7, 2], 2));
+
+
+// //Task ZC
+
+// function celsiusToFahrenheit(celsius: number): number {
+//     return (celsius * 9) / 5 + 32;
+//   }
   
-  console.log(celsiusToFahrenheit(0));   
+//   console.log(celsiusToFahrenheit(0));   
  
 
 //task --Z

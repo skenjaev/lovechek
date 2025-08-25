@@ -96,7 +96,7 @@ class MemberService {
 
     public async getTopUsers(): Promise<Member[]>{
         const result = await this.memberModel
-        .findOne({
+        .find({
             memberStatus: MemberStatus.ACTIVE,
             memberPoints: {$gte : 1}
         })
