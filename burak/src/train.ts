@@ -1,10 +1,24 @@
-
-function removeDuplicate(st: string): string {
-  return Array.from(new Set(st)).join('');
+function capitalizeWords(myStr: string): string {
+  return myStr.split(" ").map(ele => {
+    if (ele.length <= 2) {
+        return ele; 
+      }
+      return ele.charAt(0).toUpperCase() + ele.slice(1);
+    })
+    .join(" ");
 }
 
+console.log(capitalizeWords("name should be a string")); 
 
-console.log(removeDuplicate('stringg')); 
+
+
+
+// function removeDuplicate(st: string): string {
+//   return Array.from(new Set(st)).join('');
+// }
+
+
+// console.log(removeDuplicate('stringg')); 
 
 
 // function changeNumberInArray(num: number, arr: number[], newValue: number): number[] {
