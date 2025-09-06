@@ -1,15 +1,8 @@
-function capitalizeWords(myStr: string): string {
-  return myStr.split(" ").map(ele => {
-    if (ele.length <= 2) {
-        return ele; 
-      }
-      return ele.charAt(0).toUpperCase() + ele.slice(1);
-    })
-    .join(" ");
+function toSnakeCase(str: string): string {
+  return str.toLowerCase().split(" ").join("_");
 }
 
-console.log(capitalizeWords("name should be a string")); 
-
+console.log(toSnakeCase("name should be a string")); 
 
 
 
