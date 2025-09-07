@@ -1,8 +1,24 @@
-function toSnakeCase(str: string): string {
-  return str.toLowerCase().split(" ").join("_");
+function findDisappearedNumbers(arr: number[]): number[] {
+  const max = Math.max(...arr); 
+  const result: number[] = [];
+  for (let i = 1; i <= max; i++) {
+    if (!arr.includes(i)) {
+      result.push(i);
+    }
+  }
+
+  return result;
 }
 
-console.log(toSnakeCase("name should be a string")); 
+console.log(findDisappearedNumbers([1, 3, 4, 7])); 
+
+
+
+// function toSnakeCase(str: string): string {
+//   return str.toLowerCase().split(" ").join("_");
+// }
+
+// console.log(toSnakeCase("name should be a string")); 
 
 
 
