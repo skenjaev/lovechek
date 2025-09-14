@@ -1,25 +1,14 @@
-function reduceNestedArray(myArr: any[]): number {
-  let sum = 0;
-  for (const val of myArr) {
-    if (Array.isArray(val)) {
-      sum += reduceNestedArray(val); 
-    } else {
-      sum += val; 
-    }
-  }
-  return sum;
+function printNumbers(): void {
+  let count = 0; 
+  const intervalId = setInterval(() => {
+      count++;
+      console.log(count);
+
+      if (count === 5) {
+          clearInterval(intervalId); 
+      }
+  }, 1000); 
+
 }
+printNumbers();
 
-console.log(reduceNestedArray([1, [1, 2, [4]]])); 
-
-
-// function delayHelloWorld(a: string): Promise<string> {
-//   return new Promise((resolve) => {
-//       setTimeout(() => {
-//           resolve(a);
-//       }, 3000)
-//   });
-// }
-
-// delayHelloWorld("Hello World").then((result) => {
-//   console.log(result)});
