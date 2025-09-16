@@ -1,14 +1,6 @@
-function printNumbers(): void {
-  let count = 0; 
-  const intervalId = setInterval(() => {
-      count++;
-      console.log(count);
-
-      if (count === 5) {
-          clearInterval(intervalId); 
-      }
-  }, 1000); 
-
+function reverseInteger(numb: number): number {
+  return Number(numb.toString().split("").reverse().join(""));
 }
-printNumbers();
+
+console.log(reverseInteger(123456789));
 
