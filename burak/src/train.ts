@@ -1,6 +1,11 @@
-function reverseInteger(numb: number): number {
-  return Number(numb.toString().split("").reverse().join(""));
+function squareDigits(num: number): string {
+  let result = "";
+  for (const everyNum of num.toString()) {
+    const modifyEveryNum = Number(everyNum);     
+    result += (modifyEveryNum * modifyEveryNum).toString();  
+  }
+
+  return result;
 }
 
-console.log(reverseInteger(123456789));
-
+console.log(squareDigits(1234))
