@@ -1,11 +1,6 @@
-function squareDigits(num: number): string {
-  let result = "";
-  for (const everyNum of num.toString()) {
-    const modifyEveryNum = Number(everyNum);     
-    result += (modifyEveryNum * modifyEveryNum).toString();  
-  }
-
-  return result;
+function rotateArray(myArr: number[], getIndex: number): number[] {
+  const rotateIndex = getIndex % myArr.length;
+  const changed = myArr.splice(-rotateIndex);
+  return [...changed, ...myArr];
 }
-
-console.log(squareDigits(1234))
+console.log(rotateArray([1, 2, 3, 4, 5, 6], 3)); 
