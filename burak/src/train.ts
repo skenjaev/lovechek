@@ -1,12 +1,17 @@
-function areParenthesesBalanced(str: string): boolean {
-  let count = 0;
+function countNumberAndLetters(input: string): { number: number; letter: number } {
+  let numbers = 0;
+  let letters = 0;
 
-  for (let i = 0; i < str.length; i++) {
-    if (str[i] === "(") count++;
-    if (str[i] === ")") count--;
-
-    if (count < 0) return false; 
+  for (const item of input) {
+      if (item >= '0' && item <= '9') {
+          numbers++;
+      } else if ((item >= 'a' && item <= 'z') || (item >= 'A' && item <= 'Z')) {
+          letters++;
+      }
   }
-  return count === 0;
+
+  return { number: numbers, letter: letters };
 }
-console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda"))
+
+console.log(countNumberAndLetters("string152%\\¥"));
+
