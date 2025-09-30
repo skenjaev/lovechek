@@ -1,17 +1,14 @@
-function countNumberAndLetters(input: string): { number: number; letter: number } {
-  let numbers = 0;
-  let letters = 0;
+function findDuplicates(arr: number[]): number[] {
+  const getDouble: number[] = [];
 
-  for (const item of input) {
-      if (item >= '0' && item <= '9') {
-          numbers++;
-      } else if ((item >= 'a' && item <= 'z') || (item >= 'A' && item <= 'Z')) {
-          letters++;
-      }
+  for (let i = 0; i < arr.length; i++) {
+    const count = arr.filter(x => x === arr[i]).length;
+
+    if (count >= 2 && !getDouble.includes(arr[i])) {
+      getDouble.push(arr[i]);
+    }
   }
 
-  return { number: numbers, letter: letters };
+  return getDouble;
 }
-
-console.log(countNumberAndLetters("string152%\\¥"));
-
+console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4])); 
