@@ -33,7 +33,7 @@ function validateSignupForm() {
     const memberNick = $('.member-nick').val(),
     memberPhone = $('.member-phone').val(),
     memberPassword = $('.member-password').val(),
-    confirmPassword = $('.member-password').val();
+    confirmPassword = $('.confirm-password').val();
 
     if (
         memberNick === '' ||
@@ -56,4 +56,6 @@ function validateSignupForm() {
         alert('please insert restaurant image')
         return false;
     }
+
+    return true
 }

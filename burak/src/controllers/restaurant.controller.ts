@@ -33,7 +33,7 @@ restaurantController.getLogin = (req: Request, res: Response) => {
 restaurantController.getSignup = (req: Request, res: Response) => {
     try {
         console.log("getSignUp")
-        res.redirect('Signup')
+        res.render('Signup')
     }
     catch (err) {
         console.log('Error, signup', err)
@@ -47,10 +47,14 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
     try {
         console.log("processSignup");
         const file = req.file;
+        console.log(req.file
+
+        )
         if (!file)
             throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG);
 
         const newMember: MemberInput = req.body;
+        console.log("---------",req.body)
         newMember.memberType = MemberType.RESTAURANT
 
         const memberService = new MemberService();
