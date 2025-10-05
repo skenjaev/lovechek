@@ -1,8 +1,17 @@
-function singleNumber(nums: number[]): number | undefined {
-  for (let i = 0; i < nums.length; i++) {
-    if (nums.indexOf(nums[i]) === nums.lastIndexOf(nums[i])) {
-      return nums[i];
+// @MITASKts
+export function firstUniqueCharIndex(str: string): number {
+  const charCount: Record<string, number> = {};
+
+  for (const char of str) {
+    charCount[char] = (charCount[char] || 0) + 1;
+  }
+
+  for (let i = 0; i < str.length; i++) {
+    if (charCount[str[i]] === 1) {
+      return i;
     }
   }
+  return -1;
 }
-console.log(singleNumber([4, 2, 1, 2, 1]))
+
+console.log(firstUniqueCharIndex("stamp"))
