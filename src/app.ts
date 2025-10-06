@@ -1,28 +1,56 @@
-import express from "express"
-import path from "path"
-import morgan from "morgan" 
-import { MORGAN_FORMAT } from "../src/libs/config"
+import express from "express";
+import path from "path";
+import router from "./router";
+import routerAdmin from "./router-admin";
+import morgan from "morgan";
+import cookieParser from "cookie-parser";
+import { MORGAN_FORMAT } from "./libs/utils/config";
 
+import session from "express-session";
+import ConnectMongoDB from "connect-mongodb-session";
+import { T } from "./libs/types/common";
 
+const MongoDBStore = ConnectMongoDB(session);
+const store = new MongoDBStore({
+  uri: String(process.env.MONGO_URL),
+  collection: "sessions",
+});
 
+/** 1-Entrance */
+const app = express();
+app.use(express.static(path.join(__dirname, "public")));
+app.use("/uploads", express.static("./uploads"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cookieParser());
+app.use(morgan(MORGAN_FORMAT));
 
-// Entrance;
-const app = express()
-app.use(express.static(path.join(__dirname, "public")))  // Middle ware Pattern -- Design patern ga tegishli 
-app.use(express.urlencoded({extended: true})) // Middle ware pattern Traditional API requist ni qabul qiladi
-app.use(express.json()) //Middle ware pattern--json bolib kelgan requist ni object ga ugirib beradi-yani Rest API bolib requist kelgan Data larni Json ni otqizadi yani ruhsat beradi
-app.use(morgan(MORGAN_FORMAT))
+/** 2-Session */
+app.use(
+  session({
+    secret: String(process.env.SESSION_SECRET),
+    cookie: {
+      maxAge: 1000 * 3600 * 6, // 6h
+    },
+    store: store,
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
-// Session ;
+app.use(function (req, res, next) {
+  const sessionInstance = req.session as T;
+  res.locals.member = sessionInstance.member;
+  next();
+});
 
-
-// View;
+/** 3-Views */
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+/** 4-Routers*/
 
-// Routers:
+app.use("/admin", routerAdmin); // SSR: EJS
+app.use("/", router); // SPA: REACT
 
-
-
-export default app  // buyerda export bolyapti 
+export default app;
