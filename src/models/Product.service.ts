@@ -1,124 +1,142 @@
-import Errors, { HttpCode, Message } from "../libs/utils/Errors";
-import { Product, ProductInput, ProductInquiry } from "../libs/types/product";
+import { 
+  Product, 
+  ProductInput, 
+  productInquiry, 
+  ProductUpdateInput
+ } from "../libs/type/product";
 import ProductModel from "../schema/Product.model";
-import { shapeIntoMongooseObjectId } from "../libs/utils/config";
+import { HttpCode } from "../libs/Errors";
+import { Message } from "../libs/Errors";
+import Errors from "../libs/Errors";
+import { shapeIntoMongooseObjectId } from "../libs/config";
 import { ProductStatus } from "../libs/enums/product.enum";
-import { T } from "../libs/types/common";
-import { ObjectId } from "mongoose";
-import ViewService from "./View.service";
-import { ViewInput } from "../libs/types/view";
-import { ViewGroup } from "../libs/enums/view.enum";
+import { T } from "../libs/type/common";
+
 
 class ProductService {
-  private readonly productModel;
-  public viewService;
+private readonly productModel;
+    static createNewProduct: any;
+    res: any;
 
-  constructor() {
+constructor() {
     this.productModel = ProductModel;
-    this.viewService = new ViewService();
+}
+
+/** SPA */
+
+
+
+public async getProducts(inquiry: productInquiry): Promise<Product[]> {
+  const match: T = { productStatus: ProductStatus.PROCESS };
+
+  if (inquiry.productCollection) {
+    match.productCollection = inquiry.productCollection;
+  }
+  if (inquiry.search) {
+    match.productName = { $regex: new RegExp(inquiry.search, "i") };
   }
 
-  /*** SPA */
+    if (inquiry.region) {
+    match.region = inquiry.region; 
+  }
 
-  public async getProducts(inquiry: ProductInquiry): Promise<Product[]> {
-    console.log("inquiry:", inquiry);
-    const match: T = { productStatus: ProductStatus.PROCESS };
-    if (inquiry.productCollection)
-      match.productCollection = inquiry.productCollection;
-    if(inquiry.search) {
-      match.productName = { $regex: new RegExp(inquiry.search, "i") };
-    }
-    const sort: T = 
-    inquiry.order === "productPrice"
-     ? { [inquiry.order]: 1 }
-     : { [inquiry.order]: -1 };
+  const sort: T = inquiry.order === "productPrice"
+    ? { [inquiry.order]: 1 }
+    : { [inquiry.order]: -1 };
 
-    const result = await this.productModel.aggregate([
+  const result = await this.productModel
+    .aggregate([
       { $match: match },
       { $sort: sort },
       { $skip: (inquiry.page * 1 - 1) * inquiry.limit },
       { $limit: inquiry.limit * 1 },
     ])
     .exec();
-    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
-    return result;
-  }
+  if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
-  public async getProduct(
-    memberId: ObjectId | null, 
-    id: string
-  ): Promise<Product> {
-      const productId = shapeIntoMongooseObjectId(id);
+  return result;
+}
 
-      let result = await this.productModel
-      .findOne({
-        _id: productId, 
-        productStatus: ProductStatus.PROCESS
-      })
-        .exec();
-      if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
+
+
+
+public async getProduct(
+  memberId: Object | null,
+  id: string
+): Promise<Product> {
+  const productId = shapeIntoMongooseObjectId(id);
+
+  // Mahsulotni topamiz
+  let result = await this.productModel.findOne({
+    _id: productId,
+    productStatus: ProductStatus.PROCESS,
+  }).exec();
+
+  if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+
+  // Agar memberId mavjud bo'lsa va foydalanuvchi hali view qo'shmagan bo'lsa
+  if (memberId) {
+    const memberIdStr = memberId.toString();
     
-    if (memberId) {
-       // Check  Existence
-       const input: ViewInput = {
-         memberId: memberId,
-         viewRefId: productId,
-         viewGroup: ViewGroup.PRODUCT,
-       }
-       const existView = await this.viewService.checkViewExistence(input);
-       
-    console.log("exist:", !!existView);
-    if (!existView) {
-      //Insert View
-      await this.viewService.insertMemberView(input);
-     
-      // Increase Counts
-    result = await this.productModel
-      .findByIdAndUpdate(
-        productId, 
-        { $inc: { productViews: +1 } }, 
-        { new: true }
-      )
-      .exec();
-    }  
-   }
+    // Agar foydalanuvchi oldin ko'rgan bo'lsa, `productViews` oshmaydi
+    const hasViewed = result.viewedBy?.includes(memberIdStr);
 
-      return result;
-  }
-
-  /** SSR */
-
-  public async getAllProducts(): Promise<Product[]> {
-    const result = await this.productModel.find().exec();
-    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
-
-    return result;
-  }
-
-  public async ceateNewProduct(Input: ProductInput): Promise<Product> {
-    try {
-      return await this.productModel.create(Input);
-    } catch (err) {
-      console.log("Error, model:createNewProduct:", err);
-      throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
+    if (!hasViewed) {
+      await this.productModel.updateOne(
+        { _id: productId },
+        {
+          $inc: { productViews: 1 }, // `productViews` ni 1 ga oshiramiz
+          $push: { viewedBy: memberIdStr } // `viewedBy` ga foydalanuvchi ID sini qo‘shamiz
+        }
+      );
     }
   }
 
-  public async updateChosenProduct(
-    id: string,
-    input: ProductInput
-  ): Promise<Product> {
-    // string => object_id
-    id = shapeIntoMongooseObjectId(id);
-    const result = await this.productModel
-      .findOneAndUpdate({ _id: id }, input, { new: true })
-      .exec();
-    if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
-
-    return result;
-  }
+  return result;
 }
 
+
+
+/** SSR */
+
+public async getAllProducts(): Promise<Product[]> {
+
+const result = await  this.productModel
+.find().exec();
+if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+
+return result;
+  }  
+
+public async createNewProduct(input: ProductInput): Promise<Product> {
+    try {
+       return await this.productModel.create(input);
+    } catch (err) {
+        console.log("ERROR, model:createNewProduct:", err);  
+        throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
+
+    }
+  }  
+
+
+
+
+  
+  public async updateChosenProduct(
+    id: string,
+    input: ProductUpdateInput
+): Promise<Product> {
+// string => ObjectId
+id = shapeIntoMongooseObjectId(id);
+const result = await  this.productModel
+.findOneAndUpdate({ _id: id }, input, {new: true})
+.exec();
+if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.UPDATE_FAILED);
+
+return result;
+  }  
+
+}
 export default ProductService;

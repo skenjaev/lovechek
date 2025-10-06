@@ -4,43 +4,43 @@
 
 <body>
   <div class="users-container">
-    <% if(!member) { %>
+    <% if (!member) { %>
     <div class="navigation-menu">
       <ul class="nav justify-content-center">
         <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link active" href="/admin/">Home</a>
+          <a class="nav-link active" href="/admin/">홈</a>
         </li>
         <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/signup">SignUp</a>
+          <a class="nav-link" href="/admin/signup">가입</a>
         </li>
         <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/login">Login</a>
+          <a class="nav-link" href="/admin/login">로그인</a>
         </li>
       </ul>
     </div>
 
     <div class="users-frame" style="color: #dddddd">
-      <div class="board" style="font-size: 40px">Please login first!</div>
+      <div class="board" style="font-size: 40px">먼저 로그인 해주세요!</div>
     </div>
 
     <% } else { %>
     <div class="navigation-menu">
       <ul class="nav justify-content-center">
         <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link active" href="/admin/">Home</a>
+          <a class="nav-link active" href="/admin/">홈</a>
         </li>
         <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/product/all">Menu</a>
+          <a class="nav-link" href="/admin/product/all">메뉴</a>
         </li>
         <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/user/all">Users</a>
+          <a class="nav-link" href="/admin/user/all">사용자</a>
         </li>
         <li
           class="nav-item"
           style="cursor: pointer"
           onclick="return confirm('Do you really want to logout?')"
         >
-          <a class="nav-link" href="/admin/logout">Logout</a>
+          <a class="nav-link" href="/admin/logout">로그아웃</a>
         </li>
       </ul>
     </div>
@@ -48,32 +48,34 @@
     <div class="users-frame">
       <div class="board">
         <div class="user-table">
-          <span class="header-name" style="margin-bottom: 30px"
-            >All Users List</span
-          >
+          <span class="header-name" style="margin-bottom: 30px">
+            모든 사용자 목록
+          </span>
           <table class="table table-hover table-sm">
             <thead class="thead-light">
               <tr class="thead-light">
-                <th scope="col">No</th>
-                <th scope="col">Name</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Status</th>
+                <th scope="col">번호</th>
+                <th scope="col">이름</th>
+                <th scope="col">전화번호</th>
+                <th scope="col">상태</th>
               </tr>
             </thead>
-            <% users.map(function(value, index) { %>
-                <tbody style="background: white">
-                  <td><%= index+1 %></td>
-                  <td><%= value.memberNick %></td>
-                  <td><%= value.memberPhone %></td>
-                  <td style="width: 13%">
-                    <select class="spec-select member-status" id="<%= value._id %>">
-                      <option value="ACTIVE" <%= value.memberStatus === "ACTIVE" ? "selected": "" %> >ACTIVE</option>
-                      <option value="BLOCK" <%= value.memberStatus === "BLOCK" ? "selected": "" %> >BLOCK</option>
-                      <option value="DELETE" <%= value.memberStatus === "DELETE" ? "selected": "" %> >DELETE</option>
-                    </select>
-                  </td>
-                </tbody>
-             <% }) %>
+            <% users.forEach(function(value, index) { %>
+              <tbody style="background: white">
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= value.memberNick %></td>
+                <td><%= value.memberPhone %></td>
+                <td style="width: 13%">
+                  <select class="spec-select member-status" id="<%= value._id %>">
+                    <option value="ACTIVE" <%= value.memberStatus === 'ACTIVE' ? 'selected' : '' %> >활성</option>
+                    <option value="BLOCK" <%= value.memberStatus === 'BLOCK' ? 'selected' : '' %> >차단</option>
+                    <option value="DELETE" <%= value.memberStatus === 'DELETE' ? 'selected' : '' %> >삭제</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+            <% }) %>
           </table>
         </div>
       </div>
@@ -85,3 +87,4 @@
 </body>
 
 <%- include('includes/footer') %>
+

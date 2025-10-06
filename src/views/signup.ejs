@@ -7,54 +7,54 @@
     <form onsubmit="return validateSignupForm()" action="/admin/signup" method="POST" enctype="multipart/form-data">
       <div class="signup-frame" style="width: 650px">
         <div class="signup-top">
-          <span>Signup</span>
-          <div>Go back <a href="/admin" style="color: #6440fb">Home</a></div>
+          <span>회원 가입</span>
+          <div>뒤로 가기 <a href="/admin" style="color: #6440fb">홈</a></div>
           <p>
-            Already signed up?
-            <a href="/admin/login" style="color: #6440fb">Login</a>
+            이미 가입하셨나요?
+            <a href="/admin/login" style="color: #6440fb">로그인</a>
           </p>
         </div>
 
         <div class="sign-input-frame" style="justify-content: space-between">
           <div class="sign-up-frame">
-            <label>Restaurant *</label>
+            <label>관리자 *</label>
             <input
               type="text"
               name="memberNick"
               class="member-nick"
-              placeholder="Username"
+              placeholder="사용자 이름"
               value=""
             />
           </div>
           <div class="sign-up-frame">
-            <label>Phone *</label>
+            <label>전화번호 *</label>
             <input
               type="text"
               name="memberPhone"
               class="member-phone"
-              placeholder="Phone"
+              placeholder="전화번호"
               value=""
             />
           </div>
         </div>
         <div class="sign-input-frame" style="justify-content: space-between">
           <div class="sign-up-frame">
-            <label>Password *</label>
+            <label>비밀번호 *</label>
             <input
               type="password"
               name="memberPassword"
               class="member-password"
-              placeholder="Password"
+              placeholder="비밀번호"
               value=""
             />
           </div>
           <div class="sign-up-frame">
-            <label>Repeat password *</label>
+            <label>비밀번호 확인 *</label>
             <input
               type="password"
               name="confirmPassword"
               class="confirm-password"
-              placeholder="Repeat password"
+              placeholder="비밀번호 확인"
               value=""
             />
           </div>
@@ -62,20 +62,20 @@
 
         <div class="signup-input-frame">
           <div class="media-frame">
-            <img class="upload-img-frame" src="/img/default.jpeg" />
+            <img class="upload-img-frame" src="/img/favicon.png" />
             <div class="upload-container">
-              <span class="media-text">Product image</span>
+              <span class="media-text">프로필 이미지</span>
               <div
                 class="file-box bs3-primary preview-image"
                 style="margin-top: 25px; display: flex"
               >
                 <input
                   class="upload-name"
-                  value="Choose image"
+                  value="이미지 선택"
                   disabled="disabled"
                 />
                 <label for="input-file" class="file-input-label"
-                  >Upload Image</label
+                  >이미지 업로드</label
                 >
                 <input
                   type="file"
@@ -85,24 +85,24 @@
                 />
               </div>
               <p class="thumbnail-desc">
-                Please upload restaurant image.<br />
-                Attention only:.jpg, .jpeg, or .png. <br />
-                formats allowed!
+                업로드할 레스토랑 이미지를 선택하세요.<br />
+                허용되는 형식: .jpg, .jpeg, .png <br />
+                주의해주세요!
               </p>
             </div>
           </div>
         </div>
 
-        <input name="memberType" value="RESTAURANT" hidden />
+        <input name="memberType" value="BOOK" hidden />
 
         <button class="signup-btn btn" name="signup" type="submit">
-          Signup
+          회원 가입
         </button>
       </div>
     </form>
   </div>
 
- <script type="text/javascript" src="/js/signup.js"></script> 
+  <script type="text/javascript" src="/js/signup.js"></script>
 </body>
 
 <%- include('includes/footer') %>

@@ -1,14 +1,15 @@
-import mongoose, { Schema } from "mongoose";
-import { MemberStatus, MemberType } from "../libs/enums/member.enum";
+// Schema Model (Mongoose modeli)
+// Bu qism faqat ma’lumotlar tuzilishini aniqlaydi va MongoDB modelini yaratadi.
 
-// 
+import mongoose, {Schema} from 'mongoose';
+import { MemberStatus, MemberType } from '../libs/enums/member.enum';
+import MEmberService from '../models/Member.service';
 
-const memberSchema = new Schema(
-    {
+const memberSchema =  new Schema({
     memberType: {
         type: String,
-        enum: MemberType,
-        default: MemberType.USER,
+        enum:MemberType,
+        default:MemberType.USER
     },
 
     memberStatus: {
@@ -39,20 +40,19 @@ const memberSchema = new Schema(
         type: String,
     },
 
-    memberDesc: {
+    memberDecs: {
         type: String,
     },
 
     memberImage: {
         type: String,
     },
-
     memberPoints: {
         type: Number,
         default: 0,
     },
-}, 
-{ timestamps: true}   // updatedAt, createdAt
+},
+{timestamps: true}  // updatadAt, createdAt
 );
 
-export default mongoose.model('Member', memberSchema);
+export default  mongoose.model('Member', memberSchema);

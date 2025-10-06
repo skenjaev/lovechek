@@ -1,64 +1,71 @@
-import  express from "express";
+import express from "express";
 const router = express.Router();
-import memberController from "./controllers/member.controller";
+import memberController from './controllers/member.controller';
 import uploader from "./libs/utils/uploader";
-import restaurantController from "./controllers/restaurant.controller";
 import productController from "./controllers/product.controller";
- 
-/*** Member */
-router.get(
-    "/member/restaurant", 
-    memberController.getRestaurant
-);
+import orderController from "./controllers/order.controller";
 
-router.post(
-    "/member/login", 
-    memberController.login
-);
+/**********************
+*       MEMBER        *
+***********************/
 
-router.post(
-    "/member/signup", 
-    memberController.signup
-);
+router.get("/member/book", memberController.getBook);
 
-router.post(
-    "/member/logout", 
+router.post("/member/login", memberController.login);
+
+router.post("/member/signup", memberController.signup);
+
+router.post("/member/logout", 
     memberController.verifyAuth, 
-    memberController.logout
-);
+    memberController.logout 
 
-router.get(
-    "/member/detail", 
+);
+router.get("/member/detail", 
     memberController.verifyAuth,
     memberController.getMemberDetail
 );
 
-router.post(
-    "/member/update", 
-    memberController.verifyAuth, 
+router.post("/member/update", 
+    memberController.verifyAuth,
     uploader("members").single("memberImage"),
     memberController.updateMember
 );
 
-router.get(
-    "/member/top-users",
-    memberController.getTopUsers
-);
+router.get("/member/top-users", memberController.getTopUsers);
 
 
-/** Product */
+/**********************
+*       PRODUCT       *
+***********************/
 
-router.get(
-    "/product/all",
-    productController.getProducts
-);
+
+router.get("/product/all", productController.getProducts)
 
 router.get(
-    "/product/:id",
+    "/product/:id", 
     memberController.retrieveAuth,
-    productController.getProduct  
+    productController.getProduct
 );
 
-/** Order */
+/**********************
+*       ORDER       *
+***********************/
 
+router.post(
+    "/order/create",
+    memberController.verifyAuth,
+    orderController.createOrder
+  );
+  
+  router.get(
+    "/order/all",
+    memberController.verifyAuth,
+    orderController.getMyOrders
+  );
+  
+  router.post(
+    "/order/update",
+    memberController.verifyAuth,
+    orderController.updateOrder
+  );
 export default router;

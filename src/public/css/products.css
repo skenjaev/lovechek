@@ -1,21 +1,20 @@
 .products-container {
   position: relative;
-  width: auto;
-  height: auto;
-  min-height: 100%;
+  width: 100%;
+  height: 100vh; /* Butun ekran balandligi */
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(-45deg, #110303bf, #e37813, #011c1aba, #968383);
+  background: #f4f6f8; /***********************/
 }
 
 .products-container a {
   text-decoration: none;
-  color: #000000;
+  color: #181616;
 }
 
 .products-container .nav-item a {
-  color: #e3c08d;
+  color: #181616;
 }
 
 .products-container .nav-item a.disabled {
@@ -29,20 +28,22 @@
   color: #efefee;
   font-size: 40px;
   font-family: monospace;
+  margin-top: 30px;
 }
 
-.products-container .restaurant-menu-frame {
+.products-container .book-menu-frame {
   position: relative;
   padding-bottom: 80px;
   width: 100%;
   height: auto;
-
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: #f4f6f8; /***********************/
+
 }
 
-.products-container .restaurant-menu-frame .board {
+.products-container .book-menu-frame .board {
   position: relative;
   margin-top: 100px;
   width: 1320px;
@@ -50,9 +51,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: #f4f6f8; /***********************/
+
 }
 
-.products-container .board .dishes-table {
+.products-container .board .books-table {
   position: relative;
   width: 100%;
   height: auto;
@@ -62,24 +65,24 @@
   align-items: center;
 }
 
-.products-container .board .dish-container {
+.products-container .board .book-container {
   position: relative;
   margin-top: 20px;
   width: 100%;
   height: auto;
-
   display: none;
   flex-direction: column;
   align-items: center;
+  margin-top: 110px;
 }
 
-.products-container .new-dish-txt {
-  font-family: "Source Serif Pro";
+.products-container .new-book-txt {
+  font-family: "apple sd gothic neo", "맑은 고딕", "malgun gothic", 나눔고딕, nanumgothic, 돋움, dotum, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 30px;
   line-height: 25px;
-  color: #ffffff;
+  color: rgb(27, 25, 25);
 }
 
 .products-container .long-input {
@@ -92,30 +95,30 @@
 }
 
 .products-container .long-input label {
-  font-family: "Source Serif Pro";
+  font-family: "apple sd gothic neo", "맑은 고딕", "malgun gothic", 나눔고딕, nanumgothic, 돋움, dotum, sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 25px;
-  color: #ffffff;
+  color: #141414;
 }
 
 .products-container .long-input input {
   position: relative;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   padding-left: 20px;
   width: 100%;
   height: 54px;
   border: none;
   background: #f7f7f7;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-  font-family: "GT Walsheim Pro";
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  font-family: "apple sd gothic neo", "맑은 고딕", "malgun gothic", 나눔고딕, nanumgothic, 돋움, dotum, sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 26px;
-  color: #4f547b;
+  color: #212121;
 }
 
 .products-container .long-input textarea {
@@ -126,14 +129,23 @@
   height: 200px;
   border: none;
   background: #f7f7f7;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-  font-family: "GT Walsheim Pro";
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  font-family: "apple sd gothic neo", "맑은 고딕", "malgun gothic", 나눔고딕, nanumgothic, 돋움, dotum, sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 20px;
+  line-height: 25px;
+  color: #141414;
   line-height: 26px;
-  color: #4f547b;
+}
+.product-name {
+  font-family: "apple sd gothic neo", "맑은 고딕", "malgun gothic", 나눔고딕, nanumgothic, 돋움, dotum, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  color: #141414;
 }
 
 .products-container .half-input select {
@@ -145,14 +157,15 @@
   display: flex;
   border: none;
   background: #f7f7f7;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-  font-family: "GT Walsheim Pro";
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  font-family: "apple sd gothic neo", "맑은 고딕", "malgun gothic", 나눔고딕, nanumgothic, 돋움, dotum, sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 20px;
+  line-height: 25px;
+  color: #141414;
   line-height: 26px;
-  color: #4f547b;
 }
 
 .products-container select:focus {
@@ -169,9 +182,10 @@
   display: flex;
   border: none;
   background: #f7f7f7;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-  font-family: "GT Walsheim Pro";
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  font-family: "apple sd gothic neo", "맑은 고딕", "malgun gothic", 나눔고딕, nanumgothic, 돋움, dotum, sans-serif;
+
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -179,7 +193,7 @@
   color: #4f547b;
 }
 
-.products-container .dish-container .half-input-frame {
+.products-container .book-container .half-input-frame {
   position: relative;
   margin-top: 25px;
   width: 100%;
@@ -198,12 +212,12 @@
 }
 
 .products-container .half-input label {
-  font-family: "Source Serif Pro";
+  font-family: "apple sd gothic neo", "맑은 고딕", "malgun gothic", 나눔고딕, nanumgothic, 돋움, dotum, sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 25px;
-  color: #ffffff;
+  color: rgb(27, 25, 25);
 }
 
 .products-container .half-input input {
@@ -214,8 +228,8 @@
   height: 54px;
   border: none;
   background: #f7f7f7;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
 }
 
 .products-container .media-frame {
@@ -256,12 +270,12 @@
 
 .products-container .img-frame label {
   margin-top: 30px;
-  font-family: "Source Serif Pro";
+  font-family: "apple sd gothic neo", "맑은 고딕", "malgun gothic", 나눔고딕, nanumgothic, 돋움, dotum, sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 25px;
-  color: #ffffff;
+  color: rgb(27, 25, 25);
 }
 
 .products-container #file {
@@ -364,3 +378,5 @@ table th {
 .products-container .slider.round:before {
   border-radius: 50%;
 }
+
+

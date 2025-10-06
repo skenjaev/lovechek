@@ -1,75 +1,72 @@
-import mongoose, { Schema } from "mongoose";
-import { 
-   ProductVolume, 
-   ProductSize, 
-   ProductStatus, 
-   ProductCollection 
-} from "../libs/enums/product.enum";
+import mongoose, {Schema} from 'mongoose';
+import { ProductCollection, RegionFilter, ProductStatus} from '../libs/enums/product.enum';
 
 
-const productSchema = new Schema(
-   {
- productStatus: {  
-   type: String,
-   enum: ProductStatus,
-   default: ProductStatus.PAUSE,
- },
+const productSchema =  new Schema({
+   
+productStatus: {
+    type: String,
+    enum: ProductStatus,
+    default: ProductStatus.PROCESS,
+},
 
- productCollection: {
+productCollection: {
     type: String,
     enum: ProductCollection,
     required: true,
- },
+},
 
- productName: {
+productName: {
     type: String,
     required: true,
- },
+},
 
- productPrice: {
+productPrice: {
     type: Number,
     required: true,
- },
+},
 
- productLeftCount: {
-    type: Number,
-    required: true,
- },
+discountPercent: {
+  type: Number,
+//   required: false,
+  default: undefined,
+  min: 0,
+  max: 100 
+},
 
- productSize: {
+region: {
     type: String,
-    enum: ProductSize,
-    default: ProductSize.NORMAL,
- },
+    enum: RegionFilter,
+    default: RegionFilter.LOCAL,
+},
 
- productVolume: {
-    type: Number,
-    enum: ProductVolume,
-    default: ProductVolume.ONE,
- },
-
- productDesc: {
+productDesc: {
     type: String,
-    required: true,
- },
+},
 
- productImage: {
+productImages: {
     type: [String],
     default: [],
- },
+},
 
- productViews: {
+productViews: {
     type: Number,
     default: 0,
- },
-}, 
+},
 
-{ timestamps: true}   // updatedAt, createdAt
+viewedBy: {
+  type: [mongoose.Schema.Types.ObjectId],
+  ref: "Member",
+  default: []
+}
+
+},
+{timestamps: true}  // updatadAt, createdAt
 );
 
-productSchema.index( 
-    { productName: 1, productSize: 1, productVolume: 1 },
-    { unique: true }
+productSchema.index(
+    { productName: 1, RegionFilter: 1},
+    { unique: true} 
 );
 
-export default mongoose.model('Product', productSchema);
+export default  mongoose.model('Product', productSchema);

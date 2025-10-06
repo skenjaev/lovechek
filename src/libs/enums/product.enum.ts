@@ -1,28 +1,26 @@
-export enum ProductSize {
-    SMALL = "SMALL",
-    NORMAL = "NORMAL",
-    LARGE = "LARGE",
-    SET = "SET",
-}
-
-export enum ProductVolume {
-    HALF = 0.5,
-    ONE = 1, 
-    ONE_POINT_TWO = 1.2,
-    ONE_POINT_FIVE = 1.5,
-    TWO = 2,
-}
 
 export enum ProductStatus {
-    PAUSE = "PAUSE",
-    PROCESS = "PROCESS",
-    DELETE = "DELETE",
+    PROCESS = "진행 중", 
+    PAUSE = "정지",    
+    DELETE = "삭제",   
 }
 
 export enum ProductCollection {
-    DISH = "DISH",
-    SALAD = "SALAD",
-    DESSERT = "DESSERT",
-    DRINK = "DRINK",
-    OTHER = "OTHER",
+    FICTION = "소설",  
+    SELFHELP = "자기계발",  
+    COMICS = "만화",  
+    HUMANITIES = "인문",  
+    SCIENCE = "과학",  
+    HISTORY_CULTURE = "역사/문화",  
+    CHILDREN = "어린이",  
+    BUSINESS = "경제/경영",  
+    MAGAZINES = "잡지",  
+    TRAVEL = "여행"  
 }
+
+export enum RegionFilter {
+    LOCAL = "국내",  
+    WESTERN = "서양",  
+    ASIAN = "아시아"  
+}
+
